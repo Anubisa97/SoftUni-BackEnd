@@ -1,0 +1,10 @@
+{
+    "id": "1",
+    "title": "Avatar",
+    "genre": "Science Fiction",
+    "director": "James Cameron",
+    "year": 2009,
+    "imageURL": "/static/img/avatar-2009.jpg",
+    "rating": 7.9,
+    "description": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home."
+}
