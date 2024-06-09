@@ -19,16 +19,16 @@ const castSchema = new Schema({
     type: String,
     required: true,
   },
-  castImage: {
+  imageUrk: {
     type: String,
     required: true,
   },
   movie: {
-    types: [Types.ObjectId],
+    type: Types.ObjectId,
     ref: "Movie",
   },
 });
 
-const Cast = move("Cast", castSchema);
+const Cast = model("Cast", castSchema);
 
-module.exports = { Movie };
+module.exports = { Cast };
