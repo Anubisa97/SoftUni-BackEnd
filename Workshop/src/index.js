@@ -9,7 +9,7 @@ const PORT = 3000;
 async function start() {
   const app = express();
 
-  configDatabase();
+  await configDatabase();
   configExpress(app);
   configHBS(app);
   app.use(router);

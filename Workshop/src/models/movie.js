@@ -16,27 +16,29 @@ const movieSchema = new Schema({
   year: {
     type: Number,
     required: true,
-    max: 1878,
-    min: 2100,
-  },
-  imageURL: {
-    type: String,
-    required: true,
+    min: 1878,
+    max: 2100,
   },
   rating: {
     type: Number,
     required: true,
-    max: 0,
-    min: 5,
+    max: 5,
+    min: 0,
   },
-  description: {
+    description: {
     type: String,
     required: true,
     maxLength: 1000,
   },
+  imageURL: {
+    type: String,
+    required: true,
+    regexp: /^https?:\/\/.+/
+  },
   cast: {
-    types: Types.ObjectId,
+    type: [Types.ObjectId],
     ref: "Cast",
+    default: []
   },
 });
 

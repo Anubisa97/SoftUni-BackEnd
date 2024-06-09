@@ -19,13 +19,15 @@ const castSchema = new Schema({
     type: String,
     required: true,
   },
-  imageUrk: {
+  imageURL: {
     type: String,
     required: true,
+    regexp: /^https?:\/\/.+/
+
   },
   movie: {
-    type: Types.ObjectId,
-    ref: "Movie",
+    type: [Types.ObjectId],
+    ref: 'Movie',
   },
 });
 

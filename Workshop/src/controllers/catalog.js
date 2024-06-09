@@ -10,10 +10,12 @@ module.exports = {
     const id = req.params.id;
     const movie = await getMovieById(id);
 
-    movie.starRating = "&#x2605; ".repeat(movie.rating);
     if (!movie) {
       return res.render("404");
     }
+
+    movie.starRating = "&#x2605; ".repeat(movie.rating);
+
 
     res.render("details", { movie });
   },
