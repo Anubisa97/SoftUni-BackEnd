@@ -3,6 +3,6 @@ module.exports = {
         req.render('cast-create')
     },
     createCastPost: (req, res) => {
-
+        return
     }
 }
