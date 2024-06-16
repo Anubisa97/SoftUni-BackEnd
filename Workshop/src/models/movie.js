@@ -25,7 +25,7 @@ const movieSchema = new Schema({
     max: 5,
     min: 0,
   },
-    description: {
+  description: {
     type: String,
     required: true,
     maxLength: 1000,
@@ -33,12 +33,12 @@ const movieSchema = new Schema({
   imageURL: {
     type: String,
     required: true,
-    regexp: /^https?:\/\/.+/
+    match: /^https?:\/\/.+/,
   },
   cast: {
     type: [Types.ObjectId],
     ref: "Cast",
-    default: []
+    default: [],
   },
 });
 

@@ -19,15 +19,14 @@ const castSchema = new Schema({
     type: String,
     required: true,
   },
-  imageURL: {
+  imageUrl: {
     type: String,
     required: true,
-    regexp: /^https?:\/\/.+/
-
+    match: /^https?:\/\/.+/,
   },
   movie: {
     type: [Types.ObjectId],
-    ref: 'Movie',
+    ref: "Movie",
   },
 });
 

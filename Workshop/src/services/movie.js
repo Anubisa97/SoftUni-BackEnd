@@ -6,9 +6,8 @@ async function getAllMovies() {
 }
 
 async function getMovieById(id) {
-
-  const movie = await Movie.findById(id).lean()
-  return movie
+  const movie = await Movie.findById(id).lean().populate("cast");
+  return movie;
 }
 
 async function createMovie(movieData) {
@@ -20,17 +19,31 @@ async function createMovie(movieData) {
     rating: Number(movieData.rating),
     imageURL: movieData.imageURL,
     description: movieData.description,
-    cast: []
+    cast: [],
   });
 
-await movie.save()
+  await movie.save();
 
-  return movie
+  return movie;
 }
 
+async function attachCastToMovie(movieId, castId) {
+  const movie = await Movie.findById(movieId);
+
+  if (!movie) {
+    throw new Error(`Movie ${movieId} not found!`);
+  }
+
+  movie.cast.push(castId);
+
+  await movie.save();
+
+  return movie;
+}
 
 module.exports = {
   getAllMovies,
   getMovieById,
   createMovie,
+  attachCastToMovie,
 };

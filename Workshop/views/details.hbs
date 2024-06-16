@@ -9,7 +9,7 @@
           <div class="card-movie">
             <div class="first-info">
               <p class="card-genre">Genre: {{genre}}</p>
-              <p class="card-director">Directror: {{director}}</p>
+              <p class="card-director">Director: {{director}}</p>
             </div>
             <div class="second-info">
               <p class="card-year">Year: {{year}}</p>
@@ -25,5 +25,12 @@
         <img src="{{imageURL}}" alt="{{title}}" />
       </div>
     </div>
+
+    <div class="main-cast-card">
+      {{#each cast}}
+      {{> cast}}
+      {{/each}}
+    </div>
+    
   </section>
 {{/with}}
