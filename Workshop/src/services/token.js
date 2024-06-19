@@ -12,7 +12,10 @@ function createToken(user) {
   return token;
 }
 
-function verifyToken(token) {}
+function verifyToken(token) {
+  const payload = jwt.verify(token, secret);
+  return payload;
+}
 
 module.exports = {
   createToken,

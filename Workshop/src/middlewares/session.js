@@ -8,8 +8,9 @@ function session() {
       try {
         const payload = verifyToken(token);
         req.user = payload;
+        res.locals.hasUser = true;
       } catch (error) {
-        res.cookieClear("token");
+        res.clearCookie("token");
       }
     }
 

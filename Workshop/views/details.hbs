@@ -1,36 +1,48 @@
 {{#with movie}}
-  <section id="details-page">
+<section id="details-page">
 
-    <div class="main_card">
-      <div class="card_left">
-        <div class="card_datails">
+  <div class="main_card">
+    <div class="card_left">
+      <div class="card_datails">
 
-          <h1>{{title}}</h1>
-          <div class="card-movie">
-            <div class="first-info">
-              <p class="card-genre">Genre: {{genre}}</p>
-              <p class="card-director">Director: {{director}}</p>
-            </div>
-            <div class="second-info">
-              <p class="card-year">Year: {{year}}</p>
-              <p class="card-ranking">Rating: <span id="stars"> {{{starRating}}}</span></p>
-            </div>
-
+        <h1>{{title}}</h1>
+        <div class="card-movie">
+          <div class="first-info">
+            <p class="card-genre">Genre: {{genre}}</p>
+            <p class="card-director">Director: {{director}}</p>
+          </div>
+          <div class="second-info">
+            <p class="card-year">Year: {{year}}</p>
+            <p class="card-ranking">Rating: <span id="stars"> {{{starRating}}}</span></p>
           </div>
 
-          <p class="disc">Description: {{description}}</p>
         </div>
-      </div>
-      <div class="card_right">
-        <img src="{{imageURL}}" alt="{{title}}" />
-      </div>
-    </div>
 
-    <div class="main-cast-card">
-      {{#each cast}}
-      {{> cast}}
-      {{/each}}
+        <p class="disc">Description: {{description}}</p>
+      </div>
+      {{#if isAuthor}}
+      <div class="details-btn">
+        <a id="edit-button" href="/edit/{{_id}}">Edit</a>
+        <a id="delete-button" href="/delete/{{_id}}">Delete</a>
+      </div>
+      {{/if}}
     </div>
-    
-  </section>
+    <div class="card_right">
+      <img src="{{imageURL}}" alt="{{title}}" />
+    </div>
+  </div>
+
+  <div class="main-cast-card">
+    {{#if cast}}
+    {{#each cast}}
+    {{> cast}}
+    {{/each}}
+    {{else}}
+    <div class="no-cast">
+      <p>There are no casts added yet...</p>
+    </div>
+    {{/if}}
+  </div>
+
+</section>
 {{/with}}

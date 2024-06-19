@@ -7,7 +7,6 @@ module.exports = {
     const id = req.params.id;
     const movie = await getMovieById(id);
 
-    console.log(movie);
     if (!movie) {
       res.render("404");
       return;

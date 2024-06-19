@@ -1,27 +1,38 @@
 const { Router } = require("express");
-const { create, createPost } = require("../controllers/movie");
+
+const { isGuest, isUser } = require("../middlewares/guards");
+
+const { create, createPost, editGet, editPost, deleteGet, deletePost } = require("../controllers/movie");
 const { home, details, search } = require("../controllers/catalog");
 const { about } = require("../controllers/about");
 const { notFound } = require("../controllers/404");
 const { createCastGet, createCastPost } = require("../controllers/cast");
 const { attachGet, attachPost } = require("../controllers/attach");
-const { registerGet, registerPost } = require("../controllers/user");
+const { registerGet, registerPost, loginGet, loginPost, logout } = require("../controllers/user");
 
 const router = Router();
 
 router.get("/", home);
 router.get("/about", about);
 router.get("/details/:id", details);
-router.get("/attach/:id", attachGet);
-router.post("/attach/:id", attachPost);
-router.get("/create/movie", create);
-router.post("/create/movie", createPost);
-router.get("/create/cast", createCastGet);
-router.post("/create/cast", createCastPost);
 router.get("/search", search);
 
-router.get("/register", registerGet);
-router.post("/register", registerPost);
+router.get("/attach/:id", isUser(), attachGet);
+router.post("/attach/:id", isUser(), attachPost);
+router.get("/create/movie", isUser(), create);
+router.post("/create/movie", isUser(), createPost);
+router.get("/create/cast", isUser(), createCastGet);
+router.post("/create/cast", isUser(), createCastPost);
+router.get("/edit/:id", isUser(), editGet);
+router.post("/edit/:id", isUser(), editPost);
+router.get("/delete/:id", isUser(), deleteGet);
+router.post("/delete/:id", isUser(), deletePost);
+
+router.get("/register", isGuest(), registerGet);
+router.post("/register", isGuest(), registerPost);
+router.get("/login", isGuest(), loginGet);
+router.post("/login", isGuest(), loginPost);
+router.get("/logout", logout);
 
 router.get("*", notFound);
 
