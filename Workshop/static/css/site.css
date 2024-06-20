@@ -127,20 +127,24 @@ footer {
     z-index: 11111;
     top: 13%;
     text-align: center;
-    border-radius: 0.5rem;
-    color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    color: white;
     font-style: italic;
     font-weight: bold;
     height: auto;
     width: 300px;
     padding: 1em;
+
 }
 
 .error-container>p {
-    background: #22333B;
+    background: #B5838D;
     font-size: 18px;
     padding: 10px;
     height: auto;
+    border-radius: 1rem;
+    border: 1px solid rgb(78, 78, 78);
+    margin-bottom: 3px;
 }
 
 .error-container {
@@ -179,4 +183,4 @@ footer {
         visibility: hidden;
         padding: 0;
     }
-}
+} 
