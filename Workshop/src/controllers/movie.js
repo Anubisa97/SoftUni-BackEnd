@@ -1,6 +1,12 @@
 const { Router } = require("express");
-const { createMovie, getMovieById, updateMovie, deleteMovie } = require("../services/movie");
+const {
+  createMovie,
+  getMovieById,
+  updateMovie,
+  deleteMovie,
+} = require("../services/movie");
 const { isUser } = require("../middlewares/guards");
+const { parseError } = require("../utils");
 
 const movieRouter = Router();
 
@@ -11,24 +17,12 @@ movieRouter.get("/create/movie", isUser(), async (req, res) => {
 movieRouter.post("/create/movie", isUser(), async (req, res) => {
   const authorId = req.user._id;
 
-  const errors = {
-    title: !req.body.title,
-    genre: !req.body.genre,
-    director: !req.body.director,
-    year: !req.body.year,
-    imageURL: !req.body.imageURL,
-    rating: !req.body.rating,
-    description: !req.body.description,
-  };
-
-  if (Object.values(errors).includes(true)) {
-    res.render("create", { movie: req.body, errors });
-    return;
+  try {
+    const result = await createMovie(req.body, authorId);
+    res.redirect("/details/" + result._id);
+  } catch (err) {
+    res.render("create", { movie: req.body, errors: parseError(err).errors });
   }
-
-  const result = await createMovie(req.body, authorId);
-
-  res.redirect("/details/" + result._id);
 });
 
 movieRouter.get("/edit/:id", isUser(), async (req, res) => {

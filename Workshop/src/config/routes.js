@@ -10,25 +10,23 @@ const { createCastGet, createCastPost } = require("../controllers/cast");
 const { attachGet, attachPost } = require("../controllers/attach");
 const { userRouter } = require("../controllers/user");
 
-const router = Router();
+function configRoutes(app) {
+  app.get("/", home);
+  app.get("/about", about);
+  app.get("/details/:id", details);
+  app.get("/search", search);
 
-function configRoutes(app) {}
+  app.get("/attach/:id", isUser(), attachGet);
+  app.post("/attach/:id", isUser(), attachPost);
 
-router.get("/", home);
-router.get("/about", about);
-router.get("/details/:id", details);
-router.get("/search", search);
+  app.get("/create/cast", isUser(), createCastGet);
+  app.post("/create/cast", isUser(), createCastPost);
 
-router.get("/attach/:id", isUser(), attachGet);
-router.post("/attach/:id", isUser(), attachPost);
+  app.use(movieRouter);
 
-router.get("/create/cast", isUser(), createCastGet);
-router.post("/create/cast", isUser(), createCastPost);
+  app.use(userRouter);
 
-router.use(movieRouter);
+  app.get("*", notFound);
+}
 
-router.use(userRouter);
-
-router.get("*", notFound);
-
-module.exports = { router };
+module.exports = { configRoutes };

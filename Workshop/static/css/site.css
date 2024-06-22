@@ -33,7 +33,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    
+
 }
 
 nav,
@@ -148,13 +148,13 @@ footer {
 }
 
 .error-container {
-    -moz-animation: cssAnimation 0s ease-in 2s forwards;
+    -moz-animation: cssAnimation 0s ease-in 10s forwards;
     /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 10s forwards;
     /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 2s forwards;
+    -o-animation: cssAnimation 0s ease-in 510s forwards;
     /* Opera */
-    animation: cssAnimation 0s ease-in 2s forwards;
+    animation: cssAnimation 0s ease-in 10s forwards;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
@@ -163,7 +163,9 @@ footer {
     color: red;
 }
 
-.error input.inputFields, .error textarea.inputFields, .error select {
+.error input.inputFields,
+.error textarea.inputFields,
+.error select {
     border-color: red;
 }
 
@@ -183,4 +185,4 @@ footer {
         visibility: hidden;
         padding: 0;
     }
-} 
+}
